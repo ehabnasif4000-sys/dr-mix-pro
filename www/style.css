@@ -1,0 +1,192 @@
+.section-wrapper,
+.table-container,
+div {
+    width: 100% !important;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    margin: 5px;
+    padding: 20px;
+    background: #18FFFF;
+}
+
+/* لون التحذير عند وجود خطأ فى الإدخال */
+.error {
+    background-color: #ffb3b3 !important;
+    outline: 1px solid #c00;
+}
+
+/* عنوان الصفحة */
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    color: #111827;
+}
+
+/* الجداول */
+.mix-table {
+    width: 1200px !important;
+    max-width: 100% !important;
+    border-collapse: collapse;
+    margin: 0 auto 25px auto;
+    background: #ffffff;
+    display: table !important;
+    text-align: center;
+}
+
+.mix-table th,
+.mix-table td {
+    border: 3px solid #455A64;
+    padding: 3px 6px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* عنوان الجدول الأحمر */
+.section-title {
+    background: #f44336;
+    font-weight: 700;
+    padding: 9px;
+    text-align: center !important;
+    line-height: normal !important;
+    height: auto !important;
+}
+
+/* صفوف عناوين الجداول */
+.header-row {
+    background: #C5E1A5;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sub-header {
+    background: #f9f9f9;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* الخلايا الأولى (labels) */
+.label-cell {
+    width: 25%;
+    background: #ffe0b2;
+    font-weight: 500;
+}
+
+/* خلايا بيضاء */
+.white-cell {
+    background: #ffffff;
+}
+
+/* خلايا الإدخال */
+.input-cell input,
+.input-cell select {
+    width: 100%;
+    border: none;
+    padding: 6px 4px;
+    font-size: 0.85rem;
+    background: transparent;
+    text-align: center;
+}
+
+.input-cell input:focus,
+.input-cell select:focus {
+    outline: none;
+}
+
+/* خلفية صفراء (مدخلات) */
+.yellow {
+    background: #fff2cc;
+}
+
+/* خلايا النتائج */
+.calc-cell {
+    background: #ffffff;
+    text-align: right;
+    padding-right: 6px;
+    min-width: 60px;
+}
+
+/* كلاس للسنتر */
+.center {
+    text-align: center;
+}
+
+/* تكبير الـ CheckBox قليلاً */
+input[type="checkbox"] {
+    transform: scale(1.05);
+}
+
+/* إخفاء الأعمدة الفارغة فى جدول MIX CALCULATION AFTER ADJUSTED
+   (العمود الثالث – تحت Type الفارغ – وآخر عمودين على اليمين) */
+.design-mix th:nth-child(3),
+.design-mix td:nth-child(3),
+.design-mix th:nth-child(10),
+.design-mix td:nth-child(10),
+.design-mix th:nth-child(11),
+.design-mix td:nth-child(11) {
+    display: none;
+}
+
+/* إزالة الخط الرأسى بين Dosage % و Absolute Vol. m³ فى جدول الميكس */
+.design-mix th:nth-child(5),
+.design-mix td:nth-child(5) {
+    border-right-color: transparent;
+}
+.design-mix th:nth-child(6),
+.design-mix td:nth-child(6) {
+    border-left-color: transparent;
+}
+
+/* توحيد ارتفاع الصفوف */
+.mix-table tr {
+    height: 32px !important;
+}
+
+/* العمود الأول + الخلايا label على اليسار بخط عريض */
+.mix-table th:first-child,
+.mix-table td:first-child,
+.mix-table .label-cell {
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+/* صف الملخص فى الجدول الأخير */
+.final-summary td {
+    font-weight: bold !important;
+}
+
+/* إخفاء خط معين حسب ضبطك السابق فى جدول DESIGN PARAMETERS */
+.design-params th:nth-child(3),
+.design-params td:nth-child(3) {
+    border-right-color: transparent;
+}
+.design-params th:nth-child(3),
+.design-params td:nth-child(3) {
+    border-left-color: transparent;
+}
+
+/* موبايل */
+@media (max-width: 900px) {
+    body {
+        padding: 8px;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+    }
+
+    .mix-table th,
+    .mix-table td {
+        font-size: 0.72rem;
+        padding: 6px 6px;
+    }
+}

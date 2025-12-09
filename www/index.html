@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Concrete Mix Design</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+<h1 class="page-title">Professional Concrete Mix Design</h1>
+
+<!-- INPUT 1 – BASIC MIX DATA -->
+<table class="mix-table">
+  <tr><th colspan="2" class="section-title">BASIC MIX DATA</th></tr>
+  <tr>
+    <td class="label-cell">DATE</td>
+    <td class="input-cell yellow"><input id="in_date" type="date" /></td>
+  </tr>
+  <tr>
+    <td class="label-cell">Client / Contractor</td>
+    <td class="input-cell yellow"><input id="in_client" type="text" /></td>
+  </tr>
+  <tr>
+    <td class="label-cell">Project Name</td>
+    <td class="input-cell yellow"><input id="in_project" type="text" /></td>
+  </tr>
+  <tr>
+    <td class="label-cell">Concrete Grade</td>
+    <td class="input-cell yellow">
+      <select id="in_grade">
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="45">45</option>
+        <option value="50" selected>50</option>
+        <option value="60">60</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="label-cell">Slump / Flow</td>
+    <td class="input-cell yellow">
+      <select id="in_slump">
+        <option value="Slump">Slump</option>
+        <option value="Flow" selected>Flow</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="label-cell">Site Temperature (°C)</td>
+    <td class="input-cell yellow"><input id="in_temp" type="number" value="40" /></td>
+  </tr>
+  <tr>
+    <td class="label-cell">Chemical Type</td>
+    <td class="input-cell yellow">
+      <select id="in_chemtype">
+        <option value="High Range" selected>High Range</option>
+        <option value="Normal Range">Normal Range</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+<!-- RAW MATERIAL TESTS (A) FINE AGGREGATES -->
+<table class="mix-table">
+  <tr><th colspan="5" class="section-title">RAW MATERIAL TESTS (A) FINE AGGREGATES</th></tr>
+  <tr class="header-row">
+    <td class="center">Fine Aggregates</td>
+    <td class="center">Sand 1</td>
+    <td class="center">Sand 2</td>
+    <td class="center">Combined</td>
+    <td class="center">Remark</td>
+  </tr>
+  <tr>
+    <td>% of Blending</td>
+    <td class="yellow">
+      <select id="fa_blend1">
+        <option value="0">0%</option>
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="70">70%</option>
+        <option value="80">80%</option>
+        <option value="90">90%</option>
+        <option value="100">100%</option>
+      </select>
+    </td>
+    <td class="yellow">
+      <select id="fa_blend2">
+        <option value="0">0%</option>
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="70">70%</option>
+        <option value="80">80%</option>
+        <option value="90">90%</option>
+        <option value="100">100%</option>
+      </select>
+    </td>
+    <td id="fa_blend_comb" class="calc-cell"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Fineness Modulus</td>
+    <td class="yellow"><input id="fa_fm1" type="number" value="2.75" step="0.01" /></td>
+    <td class="yellow"><input id="fa_fm2" type="number" value="0" step="0.01" /></td>
+    <td id="fa_fm_comb" class="calc-cell"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>SP. GR. (SSD)</td>
+    <td class="yellow"><input id="fa_sp1" type="number" value="2.61" step="0.01" /></td>
+    <td class="yellow"><input id="fa_sp2" type="number" value="0" step="0.01" /></td>
+    <td id="fa_sp_comb" class="calc-cell"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Absorption (%)</td>
+    <td class="yellow"><input id="fa_abs1" type="number" value="0.9" step="0.01" /></td>
+    <td class="yellow"><input id="fa_abs2" type="number" value="0" step="0.01" /></td>
+    <td id="fa_abs_comb" class="calc-cell"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Moisture Content (%)</td>
+    <td class="yellow"><input id="fa_mc1" type="number" value="0.5" step="0.01" /></td>
+    <td class="yellow"><input id="fa_mc2" type="number" value="0" step="0.01" /></td>
+    <td id="fa_mc_comb" class="calc-cell"></td>
+    <td></td>
+  </tr>
+</table>
+
+<!-- (B) COARSE AGGREGATES -->
+<table class="mix-table">
+  <tr><th colspan="5" class="section-title">(B) COARSE AGGREGATES</th></tr>
+  <tr class="header-row">
+    <td class="center">Coarse Aggregates Size</td>
+    <td class="center">20 mm</td>
+    <td class="center">12.5 mm</td>
+    <td class="center">10 mm</td>
+    <td class="center">Combined</td>
+  </tr>
+  <tr>
+    <td>% of Blending</td>
+    <td class="yellow">
+      <select id="ca_b20">
+        <option value="0">0%</option>
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="70">70%</option>
+        <option value="80">80%</option>
+        <option value="90">90%</option>
+        <option value="100">100%</option>
+      </select>
+    </td>
+    <td class="yellow">
+      <select id="ca_b125">
+        <option value="0">0%</option>
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="70">70%</option>
+        <option value="80">80%</option>
+        <option value="90">90%</option>
+        <option value="100">100%</option>
+      </select>
+    </td>
+    <td class="yellow">
+      <select id="ca_b10">
+        <option value="0">0%</option>
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+        <option value="60">60%</option>
+        <option value="70">70%</option>
+        <option value="80">80%</option>
+        <option value="90">90%</option>
+        <option value="100">100%</option>
+      </select>
+    </td>
+    <td id="ca_b_comb" class="calc-cell"></td>
+  </tr>
+  <tr>
+    <td>D.R.U.W (t/m³)</td>
+    <td class="yellow"><input id="ca_d20" type="number" value="0" step="1" /></td>
+    <td class="yellow"><input id="ca_d125" type="number" value="1820" step="1" /></td>
+    <td class="yellow"><input id="ca_d10" type="number" value="1800" step="1" /></td>
+    <td id="ca_d_comb" class="calc-cell"></td>
+  </tr>
+  <tr>
+    <td>SP.GR (SSD)</td>
+    <td class="yellow"><input id="ca_sp20" type="number" value="0" step="0.01" /></td>
+    <td class="yellow"><input id="ca_sp125" type="number" value="2.89" step="0.01" /></td>
+    <td class="yellow"><input id="ca_sp10" type="number" value="2.85" step="0.01" /></td>
+    <td id="ca_sp_comb" class="calc-cell"></td>
+  </tr>
+  <tr>
+    <td>Absorption (%)</td>
+    <td class="yellow"><input id="ca_abs20" type="number" value="0" step="0.01" /></td>
+    <td class="yellow"><input id="ca_abs125" type="number" value="0.5" step="0.01" /></td>
+    <td class="yellow"><input id="ca_abs10" type="number" value="0.74" step="0.01" /></td>
+    <td id="ca_abs_comb" class="calc-cell"></td>
+  </tr>
+  <tr>
+    <td>Moisture Content (%)</td>
+    <td class="yellow"><input id="ca_mc20" type="number" value="0" step="0.01" /></td>
+    <td class="yellow"><input id="ca_mc125" type="number" value="0.18" step="0.01" /></td>
+    <td class="yellow"><input id="ca_mc10" type="number" value="0.15" step="0.01" /></td>
+    <td id="ca_mc_comb" class="calc-cell"></td>
+  </tr>
+</table>
+
+<!-- SPECIFIC GRAVITY & CHEMICAL -->
+<table class="mix-table">
+  <tr><th colspan="2" class="section-title">SPECIFIC GRAVITY (CEMENTITIOUS MATERIAL) &amp; CHEMICAL</th></tr>
+  <tr><td>CEMENT</td><td class="yellow"><input id="sg_cement" type="number" value="3.15" step="0.01" /></td></tr>
+  <tr><td>FLY ASH</td><td class="yellow"><input id="sg_fly" type="number" value="2.20" step="0.01" /></td></tr>
+  <tr><td>M. SILICA</td><td class="yellow"><input id="sg_micro" type="number" value="2.20" step="0.01" /></td></tr>
+  <tr><td>GGBS</td><td class="yellow"><input id="sg_ggbs" type="number" value="2.90" step="0.01" /></td></tr>
+  <tr><td>NORMAL CHEMICAL</td><td class="yellow"><input id="sg_normal" type="number" value="1.19" step="0.01" /></td></tr>
+  <tr><td>HIGH RANGE CHEMICAL</td><td class="yellow"><input id="sg_high" type="number" value="1.10" step="0.01" /></td></tr>
+  <tr><td>Vol. dry rodded C. Agg. (Table A1.5.3.6)</td><td class="yellow"><input id="vol_cagg" type="number" value="0.555" step="0.001" /></td></tr>
+</table>
+
+<!-- DESIGN MIX CALCULATION – DESIGN PARAMETERS -->
+<table class="mix-table design-params">
+  <tr><th colspan="11" class="section-title">DESIGN MIX CALCULATION – DESIGN PARAMETERS</th></tr>
+
+  <tr class="header-row">
+    <td colspan="4">Specification</td>
+    <td colspan="3">Used</td>
+    <td class="center">CEMENT</td>
+    <td class="center">FLYASH</td>
+    <td class="center">µ.SILICA</td>
+    <td class="center">GGBS</td>
+  </tr>
+
+  <tr class="sub-header">
+    <td colspan="4"></td>
+    <td colspan="3"></td>
+    <td class="center">KG/M³</td>
+    <td class="center">KG/M³</td>
+    <td class="center">KG/M³</td>
+    <td class="center">KG/M³</td>
+  </tr>
+
+  <tr class="header-row">
+    <td colspan="4"></td>
+    <td colspan="3"></td>
+    <td class="center">USE</td>
+    <td class="center">USE</td>
+    <td class="center">USE</td>
+    <td class="center">USE</td>
+  </tr>
+  <tr>
+    <td colspan="4"></td>
+    <td colspan="3"></td>
+    <td class="yellow center"><input type="checkbox" id="use_cement" checked /></td>
+    <td class="yellow center"><input type="checkbox" id="use_fly" checked /></td>
+    <td class="yellow center"><input type="checkbox" id="use_micro" checked /></td>
+    <td class="yellow center"><input type="checkbox" id="use_ggbs" /></td>
+  </tr>
+
+  <tr>
+    <td colspan="4">Manual Binder % (C / FA / MS / GGBS)</td>
+    <td colspan="3"></td>
+    <td class="yellow center">
+      <input id="pct_cem_manual" type="number" step="0.01" placeholder="C %" style="width:60px;" />
+    </td>
+    <td class="yellow center">
+      <input id="pct_fly_manual" type="number" step="0.01" placeholder="FA %" style="width:60px;" />
+    </td>
+    <td class="yellow center">
+      <input id="pct_micro_manual" type="number" step="0.01" placeholder="MS %" style="width:60px;" />
+    </td>
+    <td class="yellow center">
+      <input id="pct_ggbs_manual" type="number" step="0.01" placeholder="GGBS %" style="width:60px;" />
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="4">Total Cementitious (min)</td>
+    <td id="total_cem_cell" class="center white-cell"></td>
+    <td class="center">Kg/m³</td>
+    <td></td>
+    <td id="c_cem" class="calc-cell"></td>
+    <td id="c_fly" class="calc-cell"></td>
+    <td id="c_micro" class="calc-cell"></td>
+    <td id="c_ggbs" class="calc-cell"></td>
+  </tr>
+
+  <tr>
+    <td colspan="4">Nominal Max. size of Agg.</td>
+    <td class="center white-cell">12</td>
+    <td class="center">mm</td>
+    <td></td>
+    <td id="c_nom_size" class="calc-cell">12</td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="4">W/C Ratio ( Max)</td>
+    <td class="center white-cell">0.3</td>
+    <td></td><td></td>
+    <td id="wc_ratio" class="calc-cell"></td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="4">Comp. Strength (Min)</td>
+    <td class="center white-cell">50</td>
+    <td>Mpa</td><td></td>
+    <td id="c_fc" class="calc-cell"></td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="4">Flow Slump Loss</td>
+    <td class="center white-cell">Flow</td>
+    <td></td><td></td>
+    <td id="c_slump" class="calc-cell"></td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="4">Weight of Coarse Agg.</td>
+    <td class="center white-cell"></td>
+    <td>Kg/m³</td><td></td>
+    <td id="weight_coarse" class="calc-cell"></td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="4">Entrained Air ( Max)</td>
+    <td class="center white-cell">2%</td>
+    <td></td><td></td>
+    <td id="c_air" class="calc-cell"></td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr class="header-row">
+    <td colspan="4"></td>
+    <td colspan="3"></td>
+    <td class="center">h.Range</td>
+    <td class="center">Normal</td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td colspan="4">Admixture</td>
+    <td colspan="3"></td>
+    <td id="adm_high" class="calc-cell"></td>
+    <td id="adm_normal" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+</table>
+
+<!-- MIX CALCULATION AFTER ADJUSTED -->
+<table class="mix-table design-mix">
+  <tr><th colspan="11" class="section-title">MIX CALCULATION AFTER ADJUSTED</th></tr>
+  <tr class="header-row">
+    <td>Materials</td>
+    <td>Brand Name</td>
+    <td></td>
+    <td>Type</td>
+    <td>Dosage %</td>
+    <td>Absolute Vol. m³</td>
+    <td>Un-Corrected B. W (Kg/m³ &amp; Ltrs/m³)</td>
+    <td></td>
+    <td>Corrected Batch Weights</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr class="sub-header">
+    <td></td><td></td><td></td><td></td>
+    <td>%</td><td>m³</td>
+    <td>Kg/m³ &amp; Ltrs/m³</td><td></td>
+    <td>Kg/m³</td><td></td><td></td>
+  </tr>
+
+  <tr>
+    <td>Cement</td>
+    <td></td><td></td>
+    <td class="center">1</td>
+    <td id="cem_pct" class="calc-cell"></td>
+    <td id="cem_vol" class="calc-cell"></td>
+    <td id="cem_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="cem_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>Flyash</td>
+    <td></td><td></td><td></td>
+    <td id="fly_pct" class="calc-cell"></td>
+    <td id="fly_vol" class="calc-cell"></td>
+    <td id="fly_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="fly_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>M. silica</td>
+    <td></td><td></td><td></td>
+    <td id="ms_pct" class="calc-cell"></td>
+    <td id="ms_vol" class="calc-cell"></td>
+    <td id="ms_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="ms_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>GGBS</td>
+    <td></td><td></td><td></td>
+    <td id="ggbs_pct" class="calc-cell"></td>
+    <td id="ggbs_vol" class="calc-cell"></td>
+    <td id="ggbs_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="ggbs_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>Water</td>
+    <td></td><td></td>
+    <td class="center">WATER</td>
+    <td id="w_pct" class="calc-cell"></td>
+    <td id="w_vol" class="calc-cell"></td>
+    <td id="w_bw" class="calc-cell"></td>
+    <td>Ltrs / m³</td>
+    <td id="w_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>Retarder</td>
+    <td></td><td></td><td></td>
+    <td></td><td></td><td></td>
+    <td>Ltrs / m³</td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>Admixture</td>
+    <td></td><td></td>
+    <td class="center">520</td>
+    <td id="ad_pct" class="calc-cell"></td>
+    <td id="ad_vol" class="calc-cell"></td>
+    <td id="ad_bw" class="calc-cell"></td>
+    <td>Ltrs / m³</td>
+    <td id="ad_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>Corrosion Inhibitor</td>
+    <td></td><td></td><td></td>
+    <td></td><td></td><td></td>
+    <td>Ltrs / m³</td>
+    <td></td><td></td><td></td>
+  </tr>
+  <tr>
+    <td>Air</td>
+    <td></td><td></td><td></td>
+    <td id="air_pct" class="calc-cell"></td>
+    <td id="air_vol" class="calc-cell"></td>
+    <td id="air_bw" class="calc-cell"></td>
+    <td></td>
+    <td id="air_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>20 mm 3/4&quot; COARSE AGG.</td>
+    <td></td><td></td>
+    <td class="center">COARSE AGG.</td>
+    <td id="ca20_pct" class="calc-cell"></td>
+    <td id="ca20_vol" class="calc-cell"></td>
+    <td id="ca20_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="ca20_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>12.5 mm 1/2&quot; COARSE AGG.</td>
+    <td></td><td></td>
+    <td class="center">COARSE AGG.</td>
+    <td id="ca125_pct" class="calc-cell"></td>
+    <td id="ca125_vol" class="calc-cell"></td>
+    <td id="ca125_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="ca125_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>10 mm 3/8&quot; COARSE AGG.</td>
+    <td></td><td></td>
+    <td class="center">COARSE AGG.</td>
+    <td id="ca10_pct" class="calc-cell"></td>
+    <td id="ca10_vol" class="calc-cell"></td>
+    <td id="ca10_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="ca10_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr>
+    <td>Fine Aggregates FINE AGG.</td>
+    <td></td><td></td>
+    <td class="center">FINE AGG.</td>
+    <td id="fa2_pct" class="calc-cell"></td>
+    <td id="fa2_vol" class="calc-cell"></td>
+    <td id="fa2_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="fa2_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+  <tr class="header-row">
+    <td>Total</td>
+    <td></td><td></td><td></td>
+    <td id="tot_pct" class="calc-cell"></td>
+    <td id="tot_vol" class="calc-cell"></td>
+    <td id="tot_bw" class="calc-cell"></td>
+    <td>Kg/m³</td>
+    <td id="tot_bw_corr" class="calc-cell"></td>
+    <td></td><td></td>
+  </tr>
+</table>
+
+<!-- FINAL OUTPUT TABLE -->
+<table class="mix-table">
+  <tr><th colspan="5" class="section-title">FINAL CONCRETE MIX AFTER CORRECTION – DESIGN MIX FOR 1 m³</th></tr>
+  <tr class="header-row final-summary">
+    <td colspan="5">
+      Concrete Grade = <span id="out_grade"></span>
+      &nbsp;&nbsp; Total Cement = <span id="out_cement"></span> K.G
+      &nbsp;&nbsp; W/C = <span id="out_wc"></span>
+    </td>
+  </tr>
+
+  <tr class="header-row">
+    <td>Materials</td>
+    <td>Corrected Batch Weights (K.G)</td>
+    <td>Dosage %</td>
+    <td>Absolute Vol. m³</td>
+    <td>Remark</td>
+  </tr>
+  <tr><td>Cement</td><td id="fo_cem_bw"></td><td id="fo_cem_pct"></td><td id="fo_cem_vol"></td><td></td></tr>
+  <tr><td>Flyash</td><td id="fo_fly_bw"></td><td id="fo_fly_pct"></td><td id="fo_fly_vol"></td><td></td></tr>
+  <tr><td>M. silica</td><td id="fo_ms_bw"></td><td id="fo_ms_pct"></td><td id="fo_ms_vol"></td><td></td></tr>
+  <tr><td>GGBS</td><td id="fo_ggbs_bw"></td><td id="fo_ggbs_pct"></td><td id="fo_ggbs_vol"></td><td></td></tr>
+  <tr><td>Water</td><td id="fo_w_bw"></td><td id="fo_w_pct"></td><td id="fo_w_vol"></td><td></td></tr>
+  <tr><td>Admixture</td><td id="fo_ad_bw"></td><td id="fo_ad_pct"></td><td id="fo_ad_vol"></td><td></td></tr>
+  <tr><td>Air</td><td id="fo_air_bw"></td><td id="fo_air_pct"></td><td id="fo_air_vol"></td><td></td></tr>
+  <tr><td>Agg. 20 mm 3/4"</td><td id="fo_ca20_bw"></td><td id="fo_ca20_pct"></td><td id="fo_ca20_vol"></td><td></td></tr>
+  <tr><td>Agg. 12.5 mm 1/2"</td><td id="fo_ca125_bw"></td><td id="fo_ca125_pct"></td><td id="fo_ca125_vol"></td><td></td></tr>
+  <tr><td>Agg. 10 mm 3/8"</td><td id="fo_ca10_bw"></td><td id="fo_ca10_pct"></td><td id="fo_ca10_vol"></td><td></td></tr>
+  <tr><td>Fine Aggregates</td><td id="fo_fa_bw"></td><td id="fo_fa_pct"></td><td id="fo_fa_vol"></td><td></td></tr>
+  <tr class="header-row">
+    <td>TOTAL</td>
+    <td id="fo_tot_bw"></td>
+    <td id="fo_tot_pct"></td>
+    <td id="fo_tot_vol"></td>
+    <td></td>
+  </tr>
+</table>
+
+<script src="./script.js"></script>
+</body>
+</html>
